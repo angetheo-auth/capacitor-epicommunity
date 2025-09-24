@@ -25,7 +25,7 @@
       </ion-header>
 
       <div id="container">
-        bubni
+        
       </div>
     </ion-content>
   </ion-page>

@@ -1,6 +1,5 @@
 <template>
   <ion-card>
-    <!-- Header -->
     <ion-item lines="none">
       <ion-avatar slot="start">
         <img :src="avatar" alt="User avatar" />
@@ -14,18 +13,15 @@
       </ion-button>
     </ion-item>
 
-    <!-- Image -->
     <div class="card-image">
       <img :src="image"/>
     </div>
 
-    <!-- Content -->
     <ion-card-header>
       <ion-card-title>{{ title }}</ion-card-title>
       <ion-card-subtitle>{{ description }}</ion-card-subtitle>
     </ion-card-header>
 
-    <!-- Tags -->
     <ion-card-content>
       <div class="tags">
         <ion-chip color="primary" v-for="tag in tags" :key="tag">
@@ -34,8 +30,6 @@
       </div>
     </ion-card-content>
 
-    
-    <!-- Stats -->
     <ion-item lines="none">
 
       <div class="stat" v-if="members && members.length">
@@ -57,7 +51,6 @@
         </small>
       </ion-label>
     </ion-item>
-    <!-- Comment box -->
     <ion-item lines="none">
       <ion-input placeholder="Post a comment..."></ion-input>
     </ion-item>

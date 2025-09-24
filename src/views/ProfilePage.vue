@@ -122,12 +122,7 @@
         { title: "Badges", id: "badges"},
         { title: "Friends List", id: "friendsList"}
     ];
-
-    // const selectedMenuTitle = computed(() => {
-    //   const selected = menuItems.find((item) => item.id === selectedMenu.value);
-    //   return selected ? selected.title : '';
-    // });
-
+    
     function getComponent(menuId: any) {
         switch (menuId) {
             case "courses":
@@ -186,20 +181,18 @@
   padding: 1.5rem;            
   overflow-y: auto;           
 }
-/* Mobile layout container */
+
 .mobile-layout {
   display: flex;
   flex-direction: column;
 }
 
-/* Sticky menu below the Ionic header */
 .mobile-menu {
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
-/* Content scrolls independently */
 .mobile-content {
   padding: 1rem;
 }
