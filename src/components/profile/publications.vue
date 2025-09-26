@@ -12,7 +12,7 @@
           </ion-button>
         </ion-col>
         <ion-col size="12" size-md="6" class="ion-text-right">
-          <ion-searchbar placeholder="Search publications..." v-model="searchQuery"></ion-searchbar>
+          <ion-searchbar placeholder="Search..." v-model="searchQuery"></ion-searchbar>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -27,7 +27,7 @@
   <div class="mobile-layout">
     <div class="vertical-container">
       <div>
-        <ion-searchbar placeholder="Search publications..." v-model="searchQuery"></ion-searchbar>
+        <ion-searchbar placeholder="Search..." v-model="searchQuery"></ion-searchbar>
       </div>
       <div v-for="post in posts" :key="'mobile-' + post.id" class="vertical-item">
         <card v-bind="post" />

@@ -111,6 +111,8 @@ import {
   IonLabel,
   IonSelect,
   IonSelectOption,
+  IonBadge,
+  IonRow, IonGrid, IonCol
 } from "@ionic/vue";
 
 const groups = [

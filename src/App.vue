@@ -27,33 +27,17 @@
 
 <script setup lang="ts">
 import {
-  IonApp,
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonMenu,
-  IonMenuToggle,
-  IonRouterOutlet,
-  IonSplitPane,
-  IonAvatar
+  IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader,
+  IonMenu, IonMenuToggle, IonRouterOutlet, IonSplitPane, IonAvatar
 } from '@ionic/vue';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import {
-  homeOutline,
-  homeSharp,
-  personOutline,
-  personSharp,
-  bulbOutline,
-  bulbSharp,
-  chatboxOutline,
-  chatboxSharp,
-  peopleOutline,
-  peopleSharp
+  homeOutline, homeSharp, personOutline, personSharp,
+  bulbOutline, bulbSharp, chatboxOutline, chatboxSharp,
+  peopleOutline, peopleSharp
 } from 'ionicons/icons';
+
 
 const selectedIndex = ref(0);
 const route = useRoute();
@@ -109,6 +93,15 @@ ion-menu.md ion-content {
   --padding-end: 8px;
   --padding-top: 20px;
   --padding-bottom: 20px;
+}
+
+ion-split-pane {
+  --side-width: 200px;
+  --side-max-width: 200px;
+}
+
+ion-menu {
+  --min-width: 200px;
 }
 
 ion-menu.md ion-list {

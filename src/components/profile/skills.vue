@@ -7,13 +7,7 @@
     </div>
     <ion-grid>
       <ion-row>
-        <ion-col
-          size="12"
-          size-sm="6"
-          size-md="3"
-          v-for="category in categories"
-          :key="category.id"
-        >
+        <ion-col size="12" size-sm="6" size-md="3" v-for="category in categories" :key="category.id">
           <ion-card class="category-card">
             <ion-card-header>
               <ion-icon :icon="category.icon" class="category-icon" />
@@ -27,20 +21,10 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col
-          size="12"
-          size-sm="6"
-          size-md="3"
-          v-for="category in categories"
-          :key="'skills-' + category.id"
-        >
+        <ion-col size="12" size-sm="6" size-md="3" v-for="category in categories" :key="'skills-' + category.id">
           <ion-card class="skills-card">
             <ion-list>
-              <ion-item
-                v-for="(skill, index) in skills[category.id]"
-                :key="index"
-                lines="none"
-              >
+              <ion-item v-for="(skill, index) in skills[category.id]" :key="index" lines="none">
                 <ion-label>{{ skill }}</ion-label>
               </ion-item>
             </ion-list>
@@ -53,12 +37,8 @@
   <!-- Mobile layout -->
   <div class="mobile-layout">
     <ion-accordion-group>
-      <ion-accordion
-        v-for="category in categories"
-        :key="category.id"
-        :value="category.id"
-      >
-        <ion-item slot="header" color="light">
+      <ion-accordion v-for="category in categories" :key="category.id" :value="category.id">
+        <ion-item slot="header">
           <ion-icon :icon="category.icon" slot="start" color="secondary"/>
           <ion-label>
             <div class="accordion-title">{{ category.title }}</div>
@@ -68,11 +48,7 @@
 
         <div class="ion-padding" slot="content">
           <ion-list>
-            <ion-item
-              v-for="(skill, index) in skills[category.id]"
-              :key="index"
-              lines="none"
-            >
+            <ion-item v-for="(skill, index) in skills[category.id]" :key="index"lines="none">
               <ion-label>{{ skill }}</ion-label>
             </ion-item>
           </ion-list>
@@ -85,7 +61,6 @@
 
 <script setup>
 import { IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonIcon, IonList, IonItem, IonLabel, IonButton, IonAccordionGroup, IonAccordion} from "@ionic/vue";
-
 import { peopleOutline, settingsOutline, languageOutline, hardwareChipOutline} from "ionicons/icons";
 
 const categories = [

@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-header :translucent="true">
-      <ion-toolbar>
+      <ion-toolbar color="primary">
         <ion-buttons slot="start">
           <ion-menu-button color="primary"></ion-menu-button>
         </ion-buttons>
@@ -25,7 +25,7 @@
             <ion-list>
               <ion-list-header>
                 <ion-avatar>
-                  <img alt="Profile Picture" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                  <img alt="Profile Picture" src="https://ionicframework.com/docs/img/demos/avatar.svg"/>
                 </ion-avatar>
               </ion-list-header>
               <ion-item v-for="item in menuItems" :key="item.id" button :class="{ selected: selectedMenu === item.id }" @click="selectedMenu = item.id">
@@ -42,10 +42,9 @@
                 </ion-buttons>
               </ion-item>
             </ion-list>
-            
           </div>
           <div class="content">
-              <component :is="getComponent(selectedMenu)" />
+            <component :is="getComponent(selectedMenu)" />
           </div>
         </div>
 
@@ -53,17 +52,8 @@
         <div v-else class="mobile-layout">
           <div class="mobile-menu">
             <ion-item>
-              <ion-select
-                :value="selectedMenu"
-                @ionChange="selectedMenu = $event.detail.value"
-                interface="popover"
-                placeholder="Select Section"
-              >
-                <ion-select-option
-                  v-for="item in menuItems"
-                  :key="item.id"
-                  :value="item.id"
-                >
+              <ion-select :value="selectedMenu" @ionChange="selectedMenu = $event.detail.value" interface="popover" placeholder="Select Section">
+                <ion-select-option v-for="item in menuItems" :key="item.id" :value="item.id">
                   {{ item.title }}
                 </ion-select-option>
               </ion-select>
@@ -80,71 +70,71 @@
 </template>
 
 <script setup lang="ts">
-    import { IonListHeader, IonSelect, IonSelectOption, IonList, IonItem, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-    import { searchOutline, notificationsOutline} from 'ionicons/icons';
-    import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
-    import generalInformation from '@/components/profile/generalInformation.vue';
-    import courses from '@/components/profile/courses.vue';
-    import projects from '@/components/profile/projects.vue';
-    import publications from '@/components/profile/publications.vue';
-    import positions from '@/components/profile/positions.vue';
-    import skills from '@/components/profile/skills.vue';
-    import groups from '@/components/profile/groups.vue';
-    import badges from '@/components/profile/badges.vue';
-    import friendsList from '@/components/profile/friendsList.vue';
+  import { IonListHeader, IonSelect, IonSelectOption, IonList, IonItem, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+  import { searchOutline, notificationsOutline} from 'ionicons/icons';
+  import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
+  import generalInformation from '@/components/profile/generalInformation.vue';
+  import courses from '@/components/profile/courses.vue';
+  import projects from '@/components/profile/projects.vue';
+  import publications from '@/components/profile/publications.vue';
+  import positions from '@/components/profile/positions.vue';
+  import skills from '@/components/profile/skills.vue';
+  import groups from '@/components/profile/groups.vue';
+  import badges from '@/components/profile/badges.vue';
+  import friendsList from '@/components/profile/friendsList.vue';
 
-    const isMobile = ref(false);
+  const isMobile = ref(false);
 
-    function checkScreen() {
-      isMobile.value = window.innerWidth < 990;
-    }
+  function checkScreen() {
+    isMobile.value = window.innerWidth < 990;
+  }
 
-    onMounted(() => {
-      checkScreen();
-      window.addEventListener('resize', checkScreen);
-    });
+  onMounted(() => {
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+  });
 
-    onBeforeUnmount(() => {
-    window.removeEventListener('resize', checkScreen);
-    });
+  onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkScreen);
+  });
 
-    
-    const selectedMenu = ref("generalInformation");
+  
+  const selectedMenu = ref("generalInformation");
 
-    const menuItems = [
-        { title: "General Information", id: "generalInformation" },
-        { title: "Courses", id: "courses" },
-        { title: "Projects", id: "projects" },
-        { title: "Publications", id: "publications"},
-        { title: "Positions", id: "positions"},
-        { title: "Skills", id:"skills"},
-        { title: "Groups", id: "groups"},
-        { title: "Badges", id: "badges"},
-        { title: "Friends List", id: "friendsList"}
-    ];
-    
-    function getComponent(menuId: any) {
-        switch (menuId) {
-            case "courses":
-            return courses;
-            case "projects":
-            return projects;
-            case "publications":
-            return publications;
-            case "positions":
-            return positions;
-            case "skills":
-            return skills;
-            case "groups":
-            return groups;
-            case "badges":
-            return badges;
-            case "friendsList":
-            return friendsList;
-            default:
-            return generalInformation;
-        }
-    }
+  const menuItems = [
+      { title: "General Information", id: "generalInformation" },
+      { title: "Courses", id: "courses" },
+      { title: "Projects", id: "projects" },
+      { title: "Publications", id: "publications"},
+      { title: "Positions", id: "positions"},
+      { title: "Skills", id:"skills"},
+      { title: "Groups", id: "groups"},
+      { title: "Badges", id: "badges"},
+      { title: "Friends List", id: "friendsList"}
+  ];
+  
+  function getComponent(menuId: any) {
+      switch (menuId) {
+          case "courses":
+          return courses;
+          case "projects":
+          return projects;
+          case "publications":
+          return publications;
+          case "positions":
+          return positions;
+          case "skills":
+          return skills;
+          case "groups":
+          return groups;
+          case "badges":
+          return badges;
+          case "friendsList":
+          return friendsList;
+          default:
+          return generalInformation;
+      }
+  }
 
 </script>
 

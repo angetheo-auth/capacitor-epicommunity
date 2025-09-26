@@ -8,7 +8,7 @@
         <h2>{{ user }}</h2>
         <p>{{ date }}</p>
       </ion-label>
-      <ion-button fill="clear" slot="end">
+      <ion-button fill="clear" slot="end" @click="showActions = true">
         <ion-icon :icon="ellipsisVertical"></ion-icon>
       </ion-button>
     </ion-item>
@@ -31,12 +31,10 @@
     </ion-card-content>
 
     <ion-item lines="none">
-
       <div class="stat" v-if="members && members.length">
         <ion-icon :icon="peopleOutline"></ion-icon>
         <span>Members: {{ members.length }} </span>
       </div>
-
       <ion-buttons slot="end">
         <ion-button fill="clear">
           <ion-icon :icon="shareSocial"></ion-icon>
@@ -54,16 +52,14 @@
     <ion-item lines="none">
       <ion-input placeholder="Post a comment..."></ion-input>
     </ion-item>
+    <ion-action-sheet :is-open="showActions" header="Actions" :buttons="actionButtons" @didDismiss="showActions = false"/>
   </ion-card>
 </template>
 
 <script setup>
-import {
-  IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle,
-  IonCardContent, IonItem, IonAvatar, IonLabel, IonButton,
-  IonIcon, IonChip, IonInput, IonButtons
-} from '@ionic/vue'
-import { arrowUpLeftBoxOutline, ellipsisVertical, shareSocial } from 'ionicons/icons'
+import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonItem, IonAvatar, IonLabel, IonButton, IonIcon, IonChip, IonInput, IonButtons, IonActionSheet} from '@ionic/vue'
+import { arrowUpLeftBoxOutline, ellipsisVertical, shareSocial, peopleOutline, pencil, trash } from 'ionicons/icons'
+import { ref } from 'vue'
 
 defineProps({
   user: String,
@@ -76,4 +72,28 @@ defineProps({
   stats: Object,
   members: Array
 })
+
+const showActions = ref(false)
+
+const actionButtons = [
+  {
+    text: 'Edit',
+    icon: pencil,
+    handler: () => {
+      console.log('Edit clicked')
+    }
+  },
+  {
+    text: 'Delete',
+    role: 'destructive',
+    icon: trash,
+    handler: () => {
+      console.log('Delete clicked')
+    }
+  },
+  {
+    text: 'Cancel',
+    role: 'cancel'
+  }
+]
 </script>

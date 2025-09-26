@@ -12,7 +12,7 @@
           </ion-button>
         </ion-col>
         <ion-col size="12" size-md="6" class="ion-text-right">
-          <ion-searchbar placeholder="Search courses..." v-model="searchQuery"></ion-searchbar>
+          <ion-searchbar placeholder="Search..." v-model="searchQuery"></ion-searchbar>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -45,7 +45,7 @@
 <script setup>
 import { IonFab, IonFabButton, IonIcon, IonSearchbar, IonButton, IonCol, IonGrid, IonRow, IonToolbar, IonTitle } from '@ionic/vue';
 import card from './card.vue'
-import { addOutline} from 'ionicons/icons';
+import {addOutline} from 'ionicons/icons';
 
 const posts = [
   {
