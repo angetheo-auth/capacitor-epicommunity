@@ -22,8 +22,15 @@
       </ion-row>
     </ion-grid>
   </div>
-
-  <!-- Friends Grid -->
+   <!-- Mobile -->
+  <div class="mobile-layout">
+    <ion-searchbar placeholder="Search..." v-model="searchQuery"></ion-searchbar>
+    <ion-fab class="fab-fixed">
+      <ion-fab-button>
+        <ion-icon :icon="addOutline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
   <ion-grid class="friends-grid">
     <ion-row>
       <ion-col size="12" size-md="6" v-for="friend in friends" :key="friend.id">
@@ -58,20 +65,22 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!-- Pagination -->
-  <div class="pagination">
-    <ion-select interface="popover" placeholder="5" class="page-size">
-      <ion-select-option value="10">10</ion-select-option>
-      <ion-select-option value="20">20</ion-select-option>
-      <ion-select-option value="50">50</ion-select-option>
-    </ion-select>
+  <div class="desktop-layout">
+    <div class="pagination">
+      <ion-select interface="popover" placeholder="5" class="page-size">
+        <ion-select-option value="10">10</ion-select-option>
+        <ion-select-option value="20">20</ion-select-option>
+        <ion-select-option value="50">50</ion-select-option>
+      </ion-select>
+    </div>
   </div>
+
+
 </template>
 
 <script setup>
 import {IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardContent, IonAvatar, IonItem, IonLabel, IonButton, IonProgressBar, IonSearchbar, IonSelect, IonSelectOption} from "@ionic/vue";
-
+import {addOutline} from 'ionicons/icons';
 const friends = [
   {
     id: 1,
@@ -105,6 +114,22 @@ const friends = [
 </script>
 
 <style scoped>
+
+.desktop-layout {
+  display: none;
+}
+.mobile-layout {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .desktop-layout {
+    display: block;
+  }
+  .mobile-layout {
+    display: none;
+  }
+}
 .friends-header {
   display: flex;
   justify-content: space-between;
@@ -140,5 +165,12 @@ const friends = [
 
 .page-size {
   width: 80px;
+}
+
+.fab-fixed {
+  position: fixed !important;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1000;
 }
 </style>
