@@ -3,7 +3,7 @@
     <ion-header :translucent="true">
       <ion-toolbar color="primary">
         <ion-buttons slot="start">
-          <ion-menu-button color="primary"></ion-menu-button>
+          <ion-menu-button color="light"></ion-menu-button>
         </ion-buttons>
         <ion-title>{{ $route.params.id }}</ion-title>
         <ion-buttons slot="end" class="ion-margin-end">
@@ -37,6 +37,7 @@
                     export profile
                   </ion-button>
                   <ion-button fill="outline" color="danger">
+                    <ion-icon :icon="trashBinOutline"></ion-icon>
                     delete account
                   </ion-button>
                 </ion-buttons>
@@ -71,7 +72,7 @@
 
 <script setup lang="ts">
   import { IonListHeader, IonSelect, IonSelectOption, IonList, IonItem, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-  import { searchOutline, notificationsOutline} from 'ionicons/icons';
+  import { searchOutline, notificationsOutline, trashBinOutline} from 'ionicons/icons';
   import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
   import generalInformation from '@/components/profile/generalInformation.vue';
   import courses from '@/components/profile/courses.vue';

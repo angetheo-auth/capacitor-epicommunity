@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { IonFab, IonFabButton, IonIcon, IonSearchbar, IonButton, IonCol, IonGrid, IonRow, IonToolbar, IonTitle } from '@ionic/vue';
+import { IonFab, IonFabButton, IonIcon, IonSearchbar, IonButton, IonCol, IonGrid, IonRow} from '@ionic/vue';
 import card from './card.vue'
 import { addOutline} from 'ionicons/icons';
 
