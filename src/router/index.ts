@@ -13,6 +13,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/profile/:id',
     component: () => import ('../views/ProfilePage.vue')
+  },
+  {
+    path: '/dashboard/:id',
+    component: () => import ('../views/DashboardPage.vue')
+  },
+  {
+    path: '/chat/:id',
+    component: () => import ('../views/ChatPage.vue')
   }
 ]
 

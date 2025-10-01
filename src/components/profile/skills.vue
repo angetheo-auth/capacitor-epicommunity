@@ -129,13 +129,13 @@ const skills = {
 .category-card {
   text-align: center;
   padding: 1rem;
-  border: 2px solid #3b82f6;
+  border: 2px solid var(--ion-color-secondary);
   border-radius: 10px;
 }
 
 .category-icon {
   font-size: 2rem;
-  color: #3b82f6;
+  color: var(--ion-color-secondary);
   margin-bottom: 0.5rem;
 }
 
@@ -150,7 +150,7 @@ ion-item {
 .accordion-title {
   font-weight: bold;
   font-size: 1rem;
-  color: #3b82f6;
+  color: var(--ion-color-secondary);
 }
 
 .accordion-subtitle {

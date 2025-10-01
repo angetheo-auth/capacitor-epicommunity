@@ -44,7 +44,7 @@ const route = useRoute();
 const appPages = [
   {
     title: 'Dashboard',
-    url: '/folder/Dashboard',
+    url: '/dashboard/Dashboard',
     iosIcon: homeOutline,
     mdIcon: homeSharp,
   },
@@ -62,7 +62,7 @@ const appPages = [
   },
   {
     title: 'Chat',
-    url: '/folder/Chat',
+    url: '/chat/Chat',
     iosIcon: chatboxOutline,
     mdIcon: chatboxSharp,
   },
@@ -133,7 +133,7 @@ ion-menu.md ion-list#labels-list ion-list-header {
 
   margin-bottom: 18px;
 
-  color: #757575;
+  color: var(--ion-color-medium);
 
   min-height: 26px;
 }
@@ -153,7 +153,7 @@ ion-menu.md ion-item.selected ion-icon {
 }
 
 ion-menu.md ion-item ion-icon {
-  color: #616e7e;
+  color: var(--ion-color-medium);
 }
 
 ion-menu.md ion-item ion-label {
@@ -185,7 +185,7 @@ ion-menu.ios ion-item.selected ion-icon {
 
 ion-menu.ios ion-item ion-icon {
   font-size: 24px;
-  color: #73849a;
+  color: var(--ion-color-medium);
 }
 
 ion-menu.ios ion-list#labels-list ion-list-header {
