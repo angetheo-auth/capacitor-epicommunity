@@ -87,7 +87,7 @@
                 </div>
 
                 <div v-else class="mobile-content">
-                    <ion-content :fullscreen="true">
+                    <ion-content :fullscreen="true" class="ion-padding-bottom">
                         <!-- Chat header (use div instead of ion-header!) -->
                         <div class="chat-header">
                         <ion-toolbar>
@@ -114,7 +114,7 @@
                     </ion-content>
 
                     <!-- Input ALWAYS in ion-footer -->
-                    <ion-footer v-if="activeChat">
+                    <ion-footer v-if="activeChat" class="ion-no-border safe-footer">
                         <ion-toolbar>
                         <ion-item lines="none">
                             <ion-input v-model="newMessage" placeholder="Type a message..."></ion-input>
@@ -290,5 +290,9 @@ const sendMessage = () => {
   top: 0;
   z-index: 5;
 }
+.safe-footer {
+  padding-bottom: env(safe-area-inset-bottom); /* Handles iOS notch and Android nav bar */
+}
+
 
 </style>
