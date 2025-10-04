@@ -128,7 +128,7 @@
                 </ion-card-header>
                 <ion-list>
                   <ion-item v-for="(act, i) in activities" :key="i">
-                    <ion-icon :icon="act.icon" slot="start"></ion-icon>
+                    <ion-icon :icon="act.icon" slot="start" :color="act.color"></ion-icon>
                     <ion-label>{{ act.text }}</ion-label>
                   </ion-item>
                 </ion-list>
@@ -244,7 +244,7 @@
                 </ion-card-header>
                 <ion-list>
                   <ion-item v-for="(act, i) in activities" :key="i">
-                    <ion-icon :icon="act.icon" slot="start"></ion-icon>
+                    <ion-icon :icon="act.icon" slot="start" :color=act.color></ion-icon>
                     <ion-label>{{ act.text }}</ion-label>
                   </ion-item>
                 </ion-list>
@@ -282,53 +282,34 @@
                 <ion-card-header>
                   <ion-card-title>Latest Friends News</ion-card-title>
                 </ion-card-header>
-                <ion-grid class="friends-header hidden-sm">
-                  <ion-row>
-                    <ion-col size="1"></ion-col>
-                    <ion-col size="3"><strong>Friend Name</strong></ion-col>
-                    <ion-col size="3"><strong>Feed Overview</strong></ion-col>
-                    <ion-col size="2"><strong>Status</strong></ion-col>
-                    <ion-col size="3"><strong>Actions</strong></ion-col>
-                  </ion-row>
-                </ion-grid>
-                <ion-grid class="friends-body">
-                  <ion-row v-for="friend in friends" :key="friend.id" class="friend-row" >
-                    <!-- Avatar -->
-                    <ion-col size="1"  class="avatar-col">
-                      <ion-avatar>
-                        <img :src="friend.avatar" alt="friend" />
-                      </ion-avatar>
-                    </ion-col>
-                    <!-- Friend Name -->
-                    <ion-col size="3"  class="friend-info">
-                      <strong>{{ friend.name }}</strong>
+
+                <ion-list>
+                  <ion-item v-for="friend in friends" :key="friend.id" lines="full">
+                    <ion-avatar slot="start">
+                      <img :src="friend.avatar" alt="friend" />
+                    </ion-avatar>
+                    <ion-label>
+                      <h2>{{ friend.name }}</h2>
                       <p>{{ friend.role }}</p>
-                    </ion-col>
-
-                    <!-- Feed Overview -->
-                    <ion-col size="3" >
-                      {{ friend.feed }}
-                    </ion-col>
-
-                    <!-- Status -->
-                    <ion-col size="2" >
+                      <p>{{ friend.feed }}</p>
                       <ion-badge :color="friend.status === 'Active' ? 'success' : 'danger'">
                         {{ friend.status }}
                       </ion-badge>
-                    </ion-col>
-
-                    <!-- Actions -->
-                    <ion-col size="3"  class="actions">
-                      <ion-button fill="clear" size="small" color="tertiary">
-                        <ion-icon slot="start" :icon=personOutline></ion-icon>
-                        Visit Profile</ion-button>
-                      <ion-button fill="clear" size="small" color="secondary">
-                        <ion-icon slot="start" :icon=chatboxOutline></ion-icon>
-                        Message</ion-button>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
+                      <div class="actions">
+                        <ion-button fill="clear" size="small" color="tertiary">
+                          <ion-icon slot="start" :icon="personOutline"></ion-icon>
+                          Visit Profile
+                        </ion-button>
+                        <ion-button fill="clear" size="small" color="secondary">
+                          <ion-icon slot="start" :icon="chatboxOutline"></ion-icon>
+                          Message
+                        </ion-button>
+                      </div>
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
               </ion-card>
+
             </ion-content>
           </ion-tab>
         </ion-tabs>
@@ -339,7 +320,7 @@
 
 <script setup>
   import {IonButtons,IonButton,IonIcon,IonContent,IonHeader,IonMenuButton,IonPage,IonTitle,IonToolbar,IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle,IonCardContent,IonList,IonItem,IonLabel,IonGrid,IonRow,IonCol,IonBadge,IonAvatar,IonTab,IonTabBar,IonTabButton,IonTabs} from "@ionic/vue";
-  import { chevronBackOutline, chevronForwardOutline, notificationsOutline, schoolOutline, peopleOutline, thumbsUpOutline, clipboardOutline, bookmarkOutline, personOutline, chatboxOutline, barChartOutline, searchOutline } from "ionicons/icons";
+  import { chevronBackOutline, chevronForwardOutline, notificationsOutline, schoolOutline, peopleOutline, thumbsUpOutline, clipboardOutline, bookmarkOutline, personOutline, chatboxOutline, barChartOutline, searchOutline, bookOutline, briefcaseOutline } from "ionicons/icons";
   import { ref, onMounted, onBeforeUnmount, watch, nextTick } from "vue";
   import Highcharts from "highcharts";
   import HighchartsMore from "highcharts/highcharts-more";
@@ -487,8 +468,12 @@
   ]);
 
   const activities = ref([
-    { text: "50 new Courses", icon: schoolOutline },
-    { text: "50 new Users", icon: peopleOutline }
+    { text: "50 new Courses", icon: schoolOutline, color: "secondary" },
+    { text: "50 new Users", icon: clipboardOutline, color: "tertiary" },
+    { text: "10 new Publications", icon: bookOutline, color: "danger" },
+    { text: "5 new Positions", icon: briefcaseOutline, color: "primary" },
+    { text: "20 new Users", icon: personOutline, color: "success" },
+    { text: "15 new Groups", icon: peopleOutline, color: "warning" }
   ]);
 
 </script>
