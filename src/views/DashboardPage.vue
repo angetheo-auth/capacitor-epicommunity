@@ -447,7 +447,7 @@
       role: "R1",
       avatar: "https://ionicframework.com/docs/img/demos/avatar.svg",
       feed: "Added new Course",
-      status: "Inactive",
+      status: "Active",
     },
     {
       id: 3,
@@ -455,7 +455,7 @@
       role: "R1",
       avatar: "https://ionicframework.com/docs/img/demos/avatar.svg",
       feed: "Added new Course",
-      status: "Active",
+      status: "Inactive",
     },
     {
       id: 4,

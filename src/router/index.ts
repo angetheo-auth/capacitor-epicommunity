@@ -21,6 +21,26 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/chat/:id',
     component: () => import ('../views/ChatPage.vue')
+  },
+  {
+    path: '/signup',
+    component: () => import ('../views/SignUpPage.vue')
+  },
+  {
+    path: '/email-verification',
+    component: () => import ('../views/EmailVerificationPage.vue')
+  },
+  {
+    path: '/signin',
+    component: () => import ('../views/SignInPage.vue')
+  },
+  {
+    path: '/password-reset-request',
+    component: () => import ('../views/PasswordResetRequest.vue') 
+  },
+  {
+    path: '/password-reset',
+    component: () => import ('../views/PasswordReset.vue') 
   }
 ]
 
