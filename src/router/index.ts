@@ -41,7 +41,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/password-reset',
     component: () => import ('../views/PasswordReset.vue') 
-  }
+  },
+  {
+    path: '/role-selection',
+    component: () => import ('../views/RoleSelectionPage.vue') 
+  },
 ]
 
 const router = createRouter({

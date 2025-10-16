@@ -130,14 +130,5 @@ const badges = [
   font-size: 2.5rem;
 }
 
-ion-card-title {
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-ion-card-subtitle {
-  text-align: center;
-}
 
 </style>
