@@ -46,6 +46,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/role-selection',
     component: () => import ('../views/RoleSelectionPage.vue') 
   },
+  {
+    path: '/profile-creation',
+    component: () => import ('../views/ProfileCreationPage.vue') 
+  }
 ]
 
 const router = createRouter({

@@ -32,7 +32,7 @@
                 </ion-card>
             </div>
             <div class="next-container">
-              <ion-button expand="block" color="primary" class="next-btn">Next</ion-button>
+              <ion-button expand="block" color="primary" class="next-btn" router-link="profile-creation">Next</ion-button>
             </div>
         </ion-content>
     </ion-page>
