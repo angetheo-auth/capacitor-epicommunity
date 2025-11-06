@@ -1,162 +1,131 @@
 <template>
-  <ion-grid>
-    <!-- Course Title -->
-    <ion-row>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="stacked">prj Title</ion-label>
-          <ion-input placeholder="Title"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+    <ion-content class="ion-padding">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="8">
+            <ion-label>Project Title</ion-label>
+            <ion-input placeholder="Title"></ion-input>
 
-    <!-- Description + Outcomes -->
-    <ion-row>
-      <ion-col size="12" size-md="6">
-        <ion-item>
-          <ion-label position="stacked">Course Description</ion-label>
-          <ion-textarea placeholder="Description"></ion-textarea>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" size-md="6">
-        <ion-item>
-          <ion-label position="stacked">Learning Outcomes</ion-label>
-          <ion-textarea placeholder="Outcomes"></ion-textarea>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+            <ion-label>Project Description</ion-label>
+            <ion-textarea placeholder="Description"></ion-textarea>
+        
+            <ion-label>Project Link</ion-label>
+            <ion-input placeholder="URL"></ion-input>
 
-    <!-- Institution / ECTS / Format -->
-    <ion-row>
-      <ion-col size="12" size-md="4">
-        <ion-item>
-          <ion-label position="stacked">Institution</ion-label>
-          <ion-select placeholder="Select">
-            <ion-select-option>AUTH</ion-select-option>
-            <ion-select-option>MIT</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" size-md="4">
-        <ion-item>
-          <ion-label position="stacked">ECTS</ion-label>
-          <ion-input placeholder="ECTS"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" size-md="4">
-        <ion-item>
-          <ion-label position="stacked">Course Format</ion-label>
-          <ion-select placeholder="Select format">
-            <ion-select-option>Online</ion-select-option>
-            <ion-select-option>In-person</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+            <ion-row>
+              <ion-col size="12" size-md="6">
+                <ion-label>From</ion-label>
+                <ion-datetime-button datetime="datetime"></ion-datetime-button>
+                <ion-modal :keep-contents-mounted="true">
+                  <ion-datetime id="datetime" presentation="date"></ion-datetime>
+                </ion-modal>
+              </ion-col>
 
-    <!-- Target Group / Cost / Language -->
-    <ion-row>
-      <ion-col size="12" size-md="4">
-        <ion-item>
-          <ion-label position="stacked">Target Group</ion-label>
-          <ion-input placeholder="e.g. R1"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" size-md="4">
-        <ion-item>
-          <ion-label position="stacked">Cost (€)</ion-label>
-          <ion-input type="number" placeholder="Cost"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" size-md="4">
-        <ion-item>
-          <ion-label position="stacked">Language of Instruction</ion-label>
-          <ion-input placeholder="Language"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+              <ion-col size="12" size-md="6">
+                <ion-label>To</ion-label>
+                <ion-datetime-button datetime="datetime"></ion-datetime-button>
+                <ion-modal :keep-contents-mounted="true">
+                  <ion-datetime id="datetime" presentation="date"></ion-datetime>
+                </ion-modal>
+              </ion-col>
+            </ion-row>
 
-    <!-- Link / Contact -->
-    <ion-row>
-      <ion-col size="12" size-md="4">
-        <ion-item>
-          <ion-label position="stacked">Course Link</ion-label>
-          <ion-input type="url" placeholder="URL"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" size-md="4">
-        <ion-item>
-          <ion-label position="stacked">Contact Person</ion-label>
-          <ion-input placeholder="Name"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" size-md="4">
-        <ion-item>
-          <ion-label position="stacked">Contact Email</ion-label>
-          <ion-input type="email" placeholder="Email"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+            <ion-label>Project Logo</ion-label>
+            <div class="upload-box">
+              Upload a file or drag and drop
+            </div>
+          </ion-col>
 
-    <!-- Dates -->
-    <ion-row>
-      <ion-col size="12" size-md="6">
-        <ion-item>
-          <ion-label position="stacked">From</ion-label>
-          <ion-datetime presentation="date"></ion-datetime>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12" size-md="6">
-        <ion-item>
-          <ion-label position="stacked">To</ion-label>
-          <ion-datetime presentation="date"></ion-datetime>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+          <!-- RIGHT SIDE: Creator Info Card -->
+          <ion-col size="12" size-md="4">
+            <ion-card>
+              <ion-card-content>
+                <ion-label>Created By</ion-label>
+                <ion-select placeholder="Select user">
+                  <ion-select-option value="user1">User 1</ion-select-option>
+                  <ion-select-option value="user2">User 2</ion-select-option>
+                </ion-select>
 
-    <!-- File Upload -->
-    <ion-row>
-      <ion-col size="12">
-        <ion-item lines="none">
-          <ion-label position="stacked">Course Logo</ion-label>
-          <ion-button fill="outline" expand="block">
-            Upload a file or drag and drop
-          </ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+                <ion-label>Post Date</ion-label>
+                <ion-datetime-button datetime="datetime"></ion-datetime-button>
+                <ion-modal :keep-contents-mounted="true">
+                  <ion-datetime id="datetime" presentation="date"></ion-datetime>
+                </ion-modal>
+
+                <ion-label>Tags</ion-label>
+                <div class="chips-container">
+                  <ion-chip color="medium">
+                    <ion-label>LMS</ion-label>
+                    <ion-icon :icon="closeOutline"></ion-icon>
+                  </ion-chip>
+                  <ion-chip color="medium">
+                    <ion-label>Drupal</ion-label>
+                    <ion-icon :icon="closeOutline"></ion-icon>
+                  </ion-chip>
+                </div>
+                <ion-item lines="none">
+                  <ion-label>On-going</ion-label>
+                  <ion-toggle ></ion-toggle>
+                  <ion-label>Create Project Group</ion-label>
+                  <ion-toggle ></ion-toggle>
+                </ion-item>
+                <ion-label>Group Name</ion-label>
+                <ion-input placeholder="Enter group name"></ion-input>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
 </template>
 
-<script setup lang="ts">
-import {
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonSelect,
-  IonSelectOption,
-  IonTextarea,
-  IonDatetime,
-  IonButton,
-} from "@ionic/vue";
+<script setup>
+import { IonItem, IonLabel, IonTextarea, IonGrid, IonRow, IonCol, IonCard, IonCardContent, IonInput, IonToggle, IonContent, IonModal, IonDatetime, IonChip, IonIcon, IonSelectOption, IonSelect, IonDatetimeButton} from '@ionic/vue';
+import { closeOutline } from 'ionicons/icons'
 </script>
 
 <style scoped>
-ion-item {
-  --padding-start: 0;
+
+.upload-box {
+  border: 1px dashed var(--ion-color-medium);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  color: var(--ion-color-medium);
+  font-size: 14px;
 }
 
-ion-grid {
-  --ion-grid-padding: 0;
-  --ion-grid-column-padding: 0.5rem;
+ion-input,
+ion-select,
+ion-textarea {
+  --background: var(--ion-color-light);
+  --color: var(--ion-text-color);
+  --border-radius: 8px;
+  --border-width: 1px;
+  --border-style: solid;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-@media (max-width: 768px) {
-  ion-col {
-    margin-bottom: 0.75rem;
+.chips-container {
+  background: var(--ion-color-light);
+  color: var(--ion-text-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-input,
+  ion-select,
+  ion-textarea {
+    --background: var(--ion-color-dark-shade);
+  }
+  .chips-container{
+    background: var(--ion-color-dark-shade);
   }
 }
 </style>

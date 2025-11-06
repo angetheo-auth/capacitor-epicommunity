@@ -49,6 +49,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/profile-creation',
     component: () => import ('../views/ProfileCreationPage.vue') 
+  },
+  {
+    path: '/create-entity/:type',
+    component: () => import ('../views/CreateEntity.vue'),
+    props: true
   }
 ]
 

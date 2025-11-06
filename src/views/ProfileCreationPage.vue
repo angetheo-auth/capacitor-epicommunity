@@ -245,14 +245,12 @@
                 </ion-card>
             </div>
             <!-- MODAL -->
-            <ion-modal :is-open="isModalOpen" @didDismiss="closeModal">
+            <ion-modal :is-open="isModalOpen" @didDismiss="closeModal" class="responsive-modal">
                 <ion-header>
-                <ion-toolbar>
-                    <ion-title>{{ modalTitle }}</ion-title>
-                    
-                </ion-toolbar>
+                    <ion-toolbar>
+                        <ion-title>{{ modalTitle }}</ion-title>
+                    </ion-toolbar>
                 </ion-header>
-
                 <ion-content class="ion-padding">
                     <component :is="activeFormComponent" />
                     <ion-buttons>
@@ -609,5 +607,58 @@ ion-textarea {
         flex-direction: column;
         gap: 1rem;
     }
+}
+
+ion-input,
+ion-select,
+ion-textarea {
+  --background: var(--ion-color-light);
+  --color: var(--ion-text-color);
+  --border-radius: 8px;
+  --border-width: 1px;
+  --border-style: solid;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.chips-container {
+  background: var(--ion-color-light);
+  color: var(--ion-text-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-input,
+  ion-select,
+  ion-textarea {
+    --background: var(--ion-color-dark-shade);
+  }
+  .chips-container{
+    background: var(--ion-color-dark-shade);
+  }
+}
+
+</style>
+
+<style>
+ion-modal.responsive-modal {
+  --width: 90vw;
+  --height: 90vh;
+  --max-width: 900px;
+  --border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  ion-modal.responsive-modal {
+    --width: 100vw;
+    --height: 100vh;
+    --border-radius: 0;
+    --max-width: none;
+  }
 }
 </style>
