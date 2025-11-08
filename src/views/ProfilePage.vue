@@ -24,12 +24,39 @@
           <div class="sidebar">
             <ion-list>
               <ion-list-header>
-                <ion-avatar>
-                  <img alt="Profile Picture" src="https://ionicframework.com/docs/img/demos/avatar.svg"/>
-                </ion-avatar>
+                <div class="sidebar-header">
+                  <ion-avatar>
+                    <img alt="Profile Picture" src="https://ionicframework.com/docs/img/demos/avatar.svg"/>
+                  </ion-avatar>
+                  <h2>User Name</h2>
+                  <ion-button id="profile-options" color="medium">
+                    <ion-icon :icon="ellipsisHorizontalOutline"></ion-icon>
+                  </ion-button>
+
+                  <ion-popover trigger="profile-options" trigger-action="click">
+                    <ion-content>
+                      <ion-list>
+                        <ion-item button @click="handleHeaderOption('update')">
+                          <ion-icon :icon="cubeOutline" size="small"></ion-icon>
+                          <ion-label>Update Profile</ion-label>
+                        </ion-item>
+                        <ion-item button @click="handleHeaderOption('contactRequests')">
+                          <ion-icon :icon="personAddOutline" size="small"></ion-icon>
+                          <ion-label>Contact Requests</ion-label>
+                        </ion-item>
+                        <ion-item lines="none">
+                          <ion-button expand="block" fill="solid" color="primary">
+                            Sync
+                          </ion-button>
+                        </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ion-popover>
+                </div> 
               </ion-list-header>
               <ion-item v-for="item in menuItems" :key="item.id" button :class="{ selected: selectedMenu === item.id }" @click="selectedMenu = item.id">
-                  <ion-label>{{ item.title }}</ion-label>
+                <ion-icon :icon="item.icon" size="small"></ion-icon>
+                <ion-label>{{ item.title }}</ion-label>
               </ion-item>
               <ion-item>
                 <ion-buttons>
@@ -53,26 +80,41 @@
         <div v-else class="mobile-layout">
           <div class="mobile-menu">
             <ion-item>
-              <ion-select :value="selectedMenu" @ionChange="selectedMenu = $event.detail.value" interface="popover" placeholder="Select Section">
+              <ion-select :value="selectedMenu" @ionChange="onSelectChange($event.detail.value)" interface="popover" placeholder="Select Section" >
                 <ion-select-option v-for="item in menuItems" :key="item.id" :value="item.id">
                   {{ item.title }}
                 </ion-select-option>
+                <ion-select-option disabled>──────────</ion-select-option>
+                <ion-select-option value="update">Update Profile</ion-select-option>
+                <ion-select-option value="contactRequests">Contact Requests</ion-select-option>
+                <ion-select-option value="sync">Sync</ion-select-option>
               </ion-select>
             </ion-item>
           </div>
-          
+
           <div class="mobile-content">
             <component :is="getComponent(selectedMenu)" />
           </div>
+
+          <div class="mobile-actions">
+            <ion-button expand="block" fill="solid" color="primary">
+              Export Profile
+            </ion-button>
+            <ion-button expand="block" fill="outline" color="danger">
+              <ion-icon :icon="trashBinOutline"></ion-icon>
+              Delete Account
+            </ion-button>
+          </div>
         </div>
+
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-  import { IonListHeader, IonSelect, IonSelectOption, IonList, IonItem, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-  import { searchOutline, notificationsOutline, trashBinOutline} from 'ionicons/icons';
+  import { IonListHeader, IonSelect, IonPopover, IonSelectOption, IonList, IonItem, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonAvatar } from '@ionic/vue';
+  import { searchOutline, notificationsOutline, trashBinOutline, ellipsisHorizontalOutline, cubeOutline, personAddOutline, pulseOutline, bookOutline, clipboardOutline, libraryOutline, briefcaseOutline, listOutline, peopleOutline, shieldOutline, personOutline} from 'ionicons/icons';
   import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
   import generalInformation from '@/components/profile/generalInformation.vue';
   import courses from '@/components/profile/courses.vue';
@@ -83,6 +125,8 @@
   import groups from '@/components/profile/groups.vue';
   import badges from '@/components/profile/badges.vue';
   import friendsList from '@/components/profile/friendsList.vue';
+  import update from '@/components/profile/update.vue';
+  import contactRequests from '@/components/profile/contactRequests.vue';
 
   const isMobile = ref(false);
 
@@ -99,47 +143,65 @@
   window.removeEventListener('resize', checkScreen);
   });
 
-  
+  function onSelectChange(value: string) {
+    if (value !== "sync") {
+      selectedMenu.value = value;
+    }
+  }
+
   const selectedMenu = ref("generalInformation");
 
   const menuItems = [
-      { title: "General Information", id: "generalInformation" },
-      { title: "Courses", id: "courses" },
-      { title: "Projects", id: "projects" },
-      { title: "Publications", id: "publications"},
-      { title: "Positions", id: "positions"},
-      { title: "Skills", id:"skills"},
-      { title: "Groups", id: "groups"},
-      { title: "Badges", id: "badges"},
-      { title: "Friends List", id: "friendsList"}
+      { title: "General Information", id: "generalInformation", icon: pulseOutline },
+      { title: "Courses", id: "courses", icon: bookOutline },
+      { title: "Projects", id: "projects", icon: clipboardOutline },
+      { title: "Publications", id: "publications", icon: libraryOutline },
+      { title: "Positions", id: "positions", icon: briefcaseOutline },
+      { title: "Skills", id:"skills", icon: listOutline },
+      { title: "Groups", id: "groups", icon: peopleOutline },
+      { title: "Badges", id: "badges", icon: shieldOutline },
+      { title: "Friends List", id: "friendsList", icon: personOutline }
   ];
-  
-  function getComponent(menuId: any) {
-      switch (menuId) {
-          case "courses":
-          return courses;
-          case "projects":
-          return projects;
-          case "publications":
-          return publications;
-          case "positions":
-          return positions;
-          case "skills":
-          return skills;
-          case "groups":
-          return groups;
-          case "badges":
-          return badges;
-          case "friendsList":
-          return friendsList;
-          default:
-          return generalInformation;
-      }
+    
+
+  function handleHeaderOption(option: string) {
+    selectedMenu.value = option;
   }
 
+  function getComponent(menuId: string) {
+    switch (menuId) {
+      case "courses":
+        return courses;
+      case "projects":
+        return projects;
+      case "publications":
+        return publications;
+      case "positions":
+        return positions;
+      case "skills":
+        return skills;
+      case "groups":
+        return groups;
+      case "badges":
+        return badges;
+      case "friendsList":
+        return friendsList;
+      case "update":
+        return update;
+      case "contactRequests":
+        return contactRequests;
+      default:
+        return generalInformation;
+    }
+  }
 </script>
 
 <style scoped>
+ion-icon {
+  margin-right: 8px;
+
+}
+
 #container {
   text-align: center;
   padding: 1rem;
@@ -195,5 +257,10 @@
   margin-left: 20px;         
 }
 
+.sidebar-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
 
 </style>
