@@ -54,7 +54,14 @@ const routes: Array<RouteRecordRaw> = [
     path: '/create-entity/:type',
     component: () => import ('../views/CreateEntity.vue'),
     props: true
+  },
+  {
+    path: '/entity/:type',
+    name: 'EntityPage',
+    component: () => import('../views/EntityPage.vue'),
+    props: true
   }
+
 ]
 
 const router = createRouter({
