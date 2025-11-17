@@ -1,5 +1,5 @@
 <template>
-  <ion-card>
+  <ion-card button @click="goToEntity">
     <ion-item lines="none">
       <ion-avatar slot="start">
         <img :src="avatar" alt="User avatar" />
@@ -8,7 +8,7 @@
         <h2>{{ user }}</h2>
         <p>{{ date }}</p>
       </ion-label>
-      <ion-button fill="clear" slot="end" @click="showActions = true">
+      <ion-button fill="clear" slot="end" @click.stop="showActions = true">
         <ion-icon :icon="ellipsisVertical"></ion-icon>
       </ion-button>
     </ion-item>
@@ -60,8 +60,9 @@
 import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonItem, IonAvatar, IonLabel, IonButton, IonIcon, IonChip, IonInput, IonButtons, IonActionSheet} from '@ionic/vue'
 import { arrowUpLeftBoxOutline, ellipsisVertical, shareSocial, peopleOutline, pencil, trash } from 'ionicons/icons'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
 
-defineProps({
+const props = defineProps({
   user: String,
   avatar: String,
   date: String,
@@ -70,16 +71,25 @@ defineProps({
   description: String,
   tags: Array,
   stats: Object,
-  members: Array
+  members: Array,
+  type: String
 })
 
+const router = useRouter();
+
 const showActions = ref(false)
+
+function goToEntity() {
+  // there would be an id for each individual entity here 
+  router.push(`/entity/${props.type}`)
+}
 
 const actionButtons = [
   {
     text: 'Edit',
     icon: pencil,
     handler: () => {
+      router.push(`/update-entity/${props.type}`)
       console.log('Edit clicked')
     }
   },

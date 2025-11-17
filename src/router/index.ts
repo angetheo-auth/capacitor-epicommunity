@@ -60,6 +60,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'EntityPage',
     component: () => import('../views/EntityPage.vue'),
     props: true
+  },
+  {
+    path: '/update-entity/:type',
+    component: () => import('../views/UpdateEntity.vue'),
+    props: true
   }
 
 ]

@@ -34,7 +34,7 @@
       </div>
     </div>
     <ion-fab class="fab-fixed">
-      <ion-fab-button>
+      <ion-fab-button @click="createPost">
         <ion-icon :icon="addOutline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
@@ -46,6 +46,13 @@
 import { IonFab, IonFabButton, IonIcon, IonSearchbar, IonButton, IonCol, IonGrid, IonRow, IonToolbar, IonTitle } from '@ionic/vue';
 import card from './card.vue'
 import {addOutline} from 'ionicons/icons';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function createPost() {
+  router.push(`/create-entity/course`)
+}
 
 const posts = [
   {
@@ -57,7 +64,8 @@ const posts = [
     title: 'Course Title 1',
     description: 'Course description 1',
     tags: ['Tag 0', 'Tag 1'],
-    stats: { comments: 123, views: '5k', endorsements: '1k' }
+    stats: { comments: 123, views: '5k', endorsements: '1k' },
+    type: 'course'
   },
   {
     id: 2,
@@ -68,7 +76,8 @@ const posts = [
     title: 'Course Title 2',
     description: 'Course description 2',
     tags: ['Tag A', 'Tag B'],
-    stats: { comments: 456, views: '3k', endorsements: '500' }
+    stats: { comments: 456, views: '3k', endorsements: '500' },
+    type: 'course'
   },
   {
     id: 3,
@@ -79,7 +88,8 @@ const posts = [
     title: 'Course Title 3',
     description: 'Course description 3',
     tags: ['Tag X', 'Tag Y'],
-    stats: { comments: 789, views: '10k', endorsements: '2k' }
+    stats: { comments: 789, views: '10k', endorsements: '2k' },
+    type: 'course'
   }
 ]
 </script>

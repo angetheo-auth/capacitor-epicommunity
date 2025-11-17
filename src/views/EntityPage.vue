@@ -1,4 +1,20 @@
 <template>
+  <ion-header :translucent="true">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button color="light"></ion-menu-button>
+      </ion-buttons>
+      <ion-title></ion-title>
+      <ion-buttons slot="end" class="ion-margin-end">
+          <ion-button>
+            <ion-icon slot="icon-only" :icon="searchOutline"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" :icon="notificationsOutline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
   <ion-content class="ion-padding">
     <ion-card>
         <ion-card-header>
@@ -280,7 +296,7 @@
 </template>
 
 <script setup>
-import { IonAvatar, IonLabel, IonContent, IonItem, IonButtons, IonInput, IonList, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonGrid, IonRow, IonCol } from '@ionic/vue'
+import { IonAvatar, IonLabel, IonContent, IonItem, IonButtons, IonInput, IonList, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonMenuButton, IonTitle } from '@ionic/vue'
 import { bookOutline, briefcaseOutline, businessOutline, chatboxOutline, clipboardOutline, languageOutline, linkOutline, mailOutline, personOutline, shareOutline, shareSocialOutline, walletOutline } from 'ionicons/icons'
 
 const props = defineProps({
