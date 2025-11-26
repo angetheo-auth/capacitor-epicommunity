@@ -31,6 +31,7 @@
 import { computed } from 'vue'
 import { IonPage, IonContent, IonButton, IonHeader, IonToolbar, IonButtons, IonTitle, IonMenuButton, IonIcon } from '@ionic/vue'
 import { useRoute } from 'vue-router'
+import { searchOutline,  notificationsOutline} from 'ionicons/icons';
 
 import CourseUpdate from '@/components/CourseUpdate.vue'
 import PublicationUpdate from '@/components/PublicationUpdate.vue'

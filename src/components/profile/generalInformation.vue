@@ -4,7 +4,6 @@
   </div>
   <ion-grid>
     <ion-row>
-      <!-- Summary Card -->
       <ion-col size="12" size-md="6">
         <ion-card>
           <ion-item>

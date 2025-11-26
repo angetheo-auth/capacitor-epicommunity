@@ -68,7 +68,7 @@ const appPages = [
   },
   {
     title: 'Groups',
-    url: '/folder/Groups',
+    url: '/Groups',
     iosIcon: peopleOutline,
     mdIcon: peopleSharp,
   },

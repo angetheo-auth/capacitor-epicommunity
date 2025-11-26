@@ -65,6 +65,26 @@ const routes: Array<RouteRecordRaw> = [
     path: '/update-entity/:type',
     component: () => import('../views/UpdateEntity.vue'),
     props: true
+  },
+  {
+    path: '/Groups',
+    component: () => import('../views/GroupsPage.vue')
+  },
+  {
+    path: '/group-entity',
+    component: () => import('../views/GroupEntity.vue')
+  },
+  {
+    path: '/create-group',
+    component: () => import('../views/CreateGroup.vue')
+  },
+  {
+    path: '/update-group',
+    component: () => import('../views/UpdateGroup.vue')
+  },
+  {
+    path: '/assessment',
+    component: () => import('../views/AssessmentPage.vue')
   }
 
 ]

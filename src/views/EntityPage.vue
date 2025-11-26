@@ -297,7 +297,7 @@
 
 <script setup>
 import { IonAvatar, IonLabel, IonContent, IonItem, IonButtons, IonInput, IonList, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonMenuButton, IonTitle } from '@ionic/vue'
-import { bookOutline, briefcaseOutline, businessOutline, chatboxOutline, clipboardOutline, languageOutline, linkOutline, mailOutline, personOutline, shareOutline, shareSocialOutline, walletOutline } from 'ionicons/icons'
+import { searchOutline,  notificationsOutline, bookOutline, briefcaseOutline, businessOutline, chatboxOutline, clipboardOutline, languageOutline, linkOutline, mailOutline, personOutline, shareOutline, shareSocialOutline, walletOutline } from 'ionicons/icons'
 
 const props = defineProps({
   type: { type: String, default: 'course' }
