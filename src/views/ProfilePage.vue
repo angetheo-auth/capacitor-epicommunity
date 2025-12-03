@@ -114,7 +114,7 @@
 
 <script setup lang="ts">
   import { IonListHeader, IonSelect, IonPopover, IonSelectOption, IonList, IonItem, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonAvatar } from '@ionic/vue';
-  import { searchOutline, notificationsOutline, trashBinOutline, ellipsisHorizontalOutline, cubeOutline, personAddOutline, pulseOutline, bookOutline, clipboardOutline, libraryOutline, briefcaseOutline, listOutline, peopleOutline, shieldOutline, personOutline} from 'ionicons/icons';
+  import { searchOutline, notificationsOutline, trashBinOutline, ellipsisHorizontalOutline, cubeOutline, personAddOutline, pulseOutline, bookOutline, clipboardOutline, briefcaseOutline, listOutline, peopleOutline, shieldOutline, personOutline, schoolOutline} from 'ionicons/icons';
   import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
   import generalInformation from '@/components/profile/generalInformation.vue';
   import courses from '@/components/profile/courses.vue';
@@ -153,9 +153,9 @@
 
   const menuItems = [
       { title: "General Information", id: "generalInformation", icon: pulseOutline },
-      { title: "Courses", id: "courses", icon: bookOutline },
+      { title: "Courses", id: "courses", icon: schoolOutline },
       { title: "Projects", id: "projects", icon: clipboardOutline },
-      { title: "Publications", id: "publications", icon: libraryOutline },
+      { title: "Publications", id: "publications", icon: bookOutline },
       { title: "Positions", id: "positions", icon: briefcaseOutline },
       { title: "Skills", id:"skills", icon: listOutline },
       { title: "Groups", id: "groups", icon: peopleOutline },

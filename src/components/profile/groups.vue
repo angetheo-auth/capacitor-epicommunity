@@ -73,8 +73,10 @@
     <ion-card v-for="group in groups" :key="group.id">
       <ion-card-header>
         <ion-item lines="none">
-          <div slot="start" class="moderators">
-            <img  v-for="(mod, index) in group.moderators" :key="index"  :src="mod" class="avatar"  />
+          <div>
+            <ion-avatar class="moderators">
+              <img  v-for="(mod, index) in group.moderators" :key="index"  :src="mod" class="avatar"  />
+            </ion-avatar>
           </div>
           <ion-label>
             <div class="group-title">{{ group.name }}</div>
@@ -112,7 +114,8 @@ import {
   IonSelect,
   IonSelectOption,
   IonBadge,
-  IonRow, IonGrid, IonCol
+  IonRow, IonGrid, IonCol,
+  IonAvatar
 } from "@ionic/vue";
 
 const groups = [

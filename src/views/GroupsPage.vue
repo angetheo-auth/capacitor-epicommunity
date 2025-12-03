@@ -194,9 +194,9 @@ const groups = [
     name: "Group1",
     description: "group1 description",
     members: 6,
-    type: "Closed",                // "Open" or "Closed"
-    tags: ["Tag1", "Tag2"],        // NEW → used for Tags column
-    userState: "member",           // "member" | "not-member" | "pending"
+    type: "Closed",
+    tags: ["Tag1", "Tag2"],
+    userState: "member",
     moderators: [
       "https://ionicframework.com/docs/img/demos/avatar.svg",
       "https://ionicframework.com/docs/img/demos/avatar.svg",

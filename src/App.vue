@@ -12,11 +12,37 @@
             </ion-list-header>
 
             <ion-menu-toggle :auto-hide="false" v-for="(p, i) in appPages" :key="i">
-              <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" :detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
-                <ion-icon aria-hidden="true" slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
+              <ion-item
+                button
+                @click="p.children ? expanded = !expanded : (selectedIndex = i)"
+                :router-link="p.children ? undefined : p.url"
+                lines="none"
+                :detail="!!p.children"
+                :class="{ selected: selectedIndex === i }"
+              >
+                <ion-icon slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
+
+              <transition name="expand">
+                <div v-if="p.children && expanded" class="submenu">
+                  <ion-item
+                    v-for="(child, j) in p.children"
+                    :key="j"
+                    router-direction="root"
+                    :router-link="child.url"
+                    @click="selectedIndex = i"
+                    lines="none"
+                    class="submenu-item"
+                  >
+                  <ion-icon class="ion-padding-start" size="small" slot="start" :ios="child.iosIcon" :md="child.mdIcon"></ion-icon>
+                  <ion-label>{{ child.title }}</ion-label>
+                  </ion-item>
+                </div>
+              </transition>
+
             </ion-menu-toggle>
+
           </ion-list>
         </ion-content>
       </ion-menu>
@@ -35,7 +61,11 @@ import { useRoute } from 'vue-router';
 import {
   homeOutline, homeSharp, personOutline, personSharp,
   bulbOutline, bulbSharp, chatboxOutline, chatboxSharp,
-  peopleOutline, peopleSharp
+  peopleOutline, peopleSharp,
+  schoolSharp,
+  schoolOutline,
+  bookOutline,
+  bookSharp
 } from 'ionicons/icons';
 
 
@@ -56,9 +86,14 @@ const appPages = [
   },
   {
     title: 'Recommendations',
-    url: '/folder/Recommendations',
     iosIcon: bulbOutline,
     mdIcon: bulbSharp,
+    children: [
+      { title: 'Users', url: '/recommendations/users', iosIcon: personOutline, mdIcon: personSharp },
+      { title: 'Courses', url: '/recommendations/courses', iosIcon: schoolOutline, mdIcon: schoolSharp },
+      { title: 'Publications', url: '/recommendations/publications', iosIcon: bookOutline, mdIcon: bookSharp },
+      { title: 'Groups', url: '/recommendations/groups', iosIcon: peopleOutline, mdIcon: peopleSharp  },
+    ]
   },
   {
     title: 'Chat',
@@ -81,6 +116,9 @@ onMounted(() => {
     selectedIndex.value = foundIndex;
   }
 });
+
+const expanded = ref(false);
+
 </script>
 
 <style scoped>

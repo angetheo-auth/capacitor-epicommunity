@@ -85,6 +85,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/assessment',
     component: () => import('../views/AssessmentPage.vue')
+  },
+  {
+    path: '/recommendations/:type',
+    component: () => import('../views/RecommendationsPage.vue'),
+    props: true 
   }
 
 ]
