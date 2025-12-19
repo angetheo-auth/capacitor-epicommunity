@@ -1,0 +1,270 @@
+<template>
+  <ion-split-pane content-id="main-content">
+    <ion-menu content-id="main-content" type="overlay">
+        <ion-content>
+          <ion-list id="inbox-list">
+            <ion-list-header class="ion-margin-bottom">
+              <ion-avatar>
+                <img alt="Profile Picture" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              </ion-avatar>
+              <ion-label class="ion-margin-start">User name</ion-label>
+            </ion-list-header>
+            <component :is="p.children ? 'div' : IonMenuToggle" :auto-hide="false" v-for="(p, i) in appPages" :key="i">
+              <ion-item
+                button
+                @click="p.children ? toggleExpand(i) : (selectedIndex = i)"
+                :router-link="p.children ? undefined : p.url"
+                lines="none"
+                :detail="!!p.children"
+                :class="{ selected: selectedIndex === i }"
+              >
+                <ion-icon slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+
+              <transition name="expand">
+                <div v-if="p.children && expandedIndex === i" class="submenu">
+                  <ion-item
+                    v-for="(child, j) in p.children"
+                    :key="j"
+                    router-direction="root"
+                    :router-link="child.url"
+                    @click="selectedIndex = i"
+                    lines="none"
+                    class="submenu-item"
+                  >
+                    <ion-icon class="ion-padding-start" size="small" slot="start" :ios="child.iosIcon" :md="child.mdIcon"></ion-icon>
+                    <ion-label>{{ child.title }}</ion-label>
+                  </ion-item>
+                </div>
+              </transition>
+            </component>
+
+
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+
+    <ion-router-outlet id="main-content" />
+  </ion-split-pane>
+</template>
+
+<script setup>
+import {
+  IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader,
+  IonMenu, IonMenuToggle, IonRouterOutlet, IonSplitPane, IonAvatar
+} from '@ionic/vue'
+
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import {
+  homeOutline, homeSharp, personOutline, personSharp,
+  bulbOutline, bulbSharp, chatboxOutline, chatboxSharp,
+  peopleOutline, peopleSharp,
+  schoolSharp,
+  schoolOutline,
+  bookOutline,
+  bookSharp, searchOutline, searchSharp,
+  clipboardOutline,
+  clipboardSharp,
+} from 'ionicons/icons';
+
+
+const selectedIndex = ref(0);
+const route = useRoute();
+const appPages = [
+  {
+    title: 'Dashboard',
+    url: '/dashboard',
+    iosIcon: homeOutline,
+    mdIcon: homeSharp,
+  },
+  {
+    title: 'Profile',
+    url: '/profile',
+    iosIcon: personOutline,
+    mdIcon: personSharp,
+  },
+  {
+    title: 'Recommendations',
+    iosIcon: bulbOutline,
+    mdIcon: bulbSharp,
+    children: [
+      { title: 'Users', url: '/recommendations/users', iosIcon: personOutline, mdIcon: personSharp },
+      { title: 'Courses', url: '/recommendations/courses', iosIcon: schoolOutline, mdIcon: schoolSharp },
+      { title: 'Publications', url: '/recommendations/publications', iosIcon: bookOutline, mdIcon: bookSharp },
+      { title: 'Groups', url: '/recommendations/groups', iosIcon: peopleOutline, mdIcon: peopleSharp  },
+    ]
+  },
+  {
+    title: 'Chat',
+    url: '/chat',
+    iosIcon: chatboxOutline,
+    mdIcon: chatboxSharp,
+  },
+  {
+    title: 'Groups',
+    url: '/Groups',
+    iosIcon: peopleOutline,
+    mdIcon: peopleSharp,
+  },
+  {
+    title: 'Search',
+    iosIcon: searchOutline,
+    mdIcon: searchSharp,
+    children: [
+      { title: 'Users', url: '/search/users', iosIcon: personOutline, mdIcon: personSharp },
+      { title: 'Projects', url: '/search/projects', iosIcon: clipboardOutline, mdIcon: clipboardSharp },
+      { title: 'Courses', url: '/search/courses', iosIcon: schoolOutline, mdIcon: schoolSharp },
+      { title: 'Publications', url: '/search/publications', iosIcon: bookOutline, mdIcon: bookSharp },
+      { title: 'Groups', url: '/search/groups', iosIcon: peopleOutline, mdIcon: peopleSharp  },
+    ]
+  },
+];
+
+onMounted(() => {
+  const currentPath = route.path.toLowerCase();
+  const foundIndex = appPages.findIndex((page) => currentPath.startsWith(page.url.toLowerCase()));
+  if (foundIndex > -1) {
+    selectedIndex.value = foundIndex;
+  }
+});
+
+const expandedIndex = ref(null);
+
+function toggleExpand(index) {
+  expandedIndex.value = expandedIndex.value === index ? null : index;
+}
+
+</script>
+
+<style scoped>
+ion-menu ion-content {
+  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+}
+
+ion-menu.md ion-content {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+}
+
+ion-split-pane {
+  --side-width: 200px;
+  --side-max-width: 200px;
+}
+
+ion-menu {
+  --min-width: 200px;
+}
+
+ion-menu.md ion-list {
+  padding: 20px 0;
+}
+
+ion-menu.md ion-note {
+  margin-bottom: 30px;
+}
+
+ion-menu.md ion-list-header,
+ion-menu.md ion-note {
+  padding-left: 10px;
+}
+
+ion-menu.md ion-list#inbox-list {
+  border-bottom: 1px solid var(--ion-background-color-step-150, #d7d8da);
+}
+
+ion-menu.md ion-list#inbox-list ion-list-header {
+  font-size: 22px;
+  font-weight: 600;
+
+  min-height: 20px;
+}
+
+ion-menu.md ion-list#labels-list ion-list-header {
+  font-size: 16px;
+
+  margin-bottom: 18px;
+
+  color: var(--ion-color-medium);
+
+  min-height: 26px;
+}
+
+ion-menu.md ion-item {
+  --padding-start: 10px;
+  --padding-end: 10px;
+  border-radius: 4px;
+}
+
+ion-menu.md ion-item.selected {
+  --background: rgba(var(--ion-color-primary-rgb), 0.14);
+}
+
+ion-menu.md ion-item.selected ion-icon {
+  color: var(--ion-color-primary);
+}
+
+ion-menu.md ion-item ion-icon {
+  color: var(--ion-color-medium);
+}
+
+ion-menu.md ion-item ion-label {
+  font-weight: 500;
+}
+
+ion-menu.ios ion-content {
+  --padding-bottom: 20px;
+}
+
+ion-menu.ios ion-list {
+  padding: 20px 0 0 0;
+}
+
+ion-menu.ios ion-note {
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+ion-menu.ios ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 50px;
+}
+
+ion-menu.ios ion-item.selected ion-icon {
+  color: var(--ion-color-primary);
+}
+
+ion-menu.ios ion-item ion-icon {
+  font-size: 24px;
+  color: var(--ion-color-medium);
+}
+
+ion-menu.ios ion-list#labels-list ion-list-header {
+  margin-bottom: 8px;
+}
+
+ion-menu.ios ion-list-header,
+ion-menu.ios ion-note {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+ion-menu.ios ion-note {
+  margin-bottom: 8px;
+}
+
+ion-note {
+  display: inline-block;
+  font-size: 16px;
+
+  color: var(--ion-color-medium-shade);
+}
+
+ion-item.selected {
+  --color: var(--ion-color-primary);
+}
+</style>
