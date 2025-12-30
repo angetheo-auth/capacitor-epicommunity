@@ -42,17 +42,19 @@
 
 
           </ion-list>
+           <ion-button router-link="/signin">Log out</ion-button>
         </ion-content>
       </ion-menu>
 
     <ion-router-outlet id="main-content" />
+   
   </ion-split-pane>
 </template>
 
 <script setup>
 import {
   IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader,
-  IonMenu, IonMenuToggle, IonRouterOutlet, IonSplitPane, IonAvatar
+  IonMenu, IonMenuToggle, IonRouterOutlet, IonSplitPane, IonAvatar, IonButton
 } from '@ionic/vue'
 
 import { ref, onMounted } from 'vue';

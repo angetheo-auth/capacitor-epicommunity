@@ -7,6 +7,7 @@ const authRoutes = {
   path: '/',
   component: AuthLayout,
   children: [
+    { path: '', redirect: '/signin' },
     { path: 'signin', component: () => import('../views/SignInPage.vue') },
     { path: 'signup', component: () => import('../views/SignUpPage.vue') },
     { path: 'email-verification', component: () => import('../views/EmailVerificationPage.vue') },
@@ -20,7 +21,6 @@ const appRoutes = {
   path: '/',
   component: AppLayout,
   children: [
-    { path: '', redirect: '/dashboard' },
     { path: 'dashboard', component: () => import('../views/DashboardPage.vue') },
     { path: 'profile', component: () => import('../views/ProfilePage.vue') },
     { path: 'chat', component: () => import('../views/ChatPage.vue') },

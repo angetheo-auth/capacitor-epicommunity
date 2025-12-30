@@ -100,7 +100,7 @@ function handleSubmit() {
   validatePassword()
   if (!errors.value.email && !errors.value.password) {
     console.log('Form submitted:', { email: email.value, password: password.value })
-    router.push('/dashboard/Dashboard')
+    router.push('/dashboard')
   }
 }
 </script>

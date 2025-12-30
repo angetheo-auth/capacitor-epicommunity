@@ -42,7 +42,7 @@
     import { personOutline, personAddOutline } from 'ionicons/icons';
     import { ref } from "vue";
     
-    const selectedRole = (null);
+    const selectedRole = ref(null);
 
     const selectRole = (role) => {
     selectedRole.value = role;

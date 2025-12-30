@@ -40,7 +40,7 @@ import PositionForm from '@/components/entityForms/PositionForm.vue'
 
 const route = useRoute()
 
-const type = route.params.type
+const type = route.fullPath.split('/')[2]
 
 const formMap = {
   course: CourseForm,
@@ -50,6 +50,7 @@ const formMap = {
 }
 
 const selectedForm = computed(() => formMap[type] || null)
+
 
 const pageTitle = computed(() => {
   if (!type) return 'Create Item'

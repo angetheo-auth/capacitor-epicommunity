@@ -13,7 +13,7 @@
                 </ion-card-header>
                 <ion-card-content>
                     <p>Before proceeding to the EPICommunity, please check your email for a verification link. If you did not receive the email, click the button to get another.</p>
-                    <ion-button class="ion-padding" color="primary">Request another</ion-button>
+                    <ion-button class="ion-padding" color="primary" @click="handleVerify">Request another</ion-button>
                 </ion-card-content>
             </ion-card>
         </div>
@@ -29,7 +29,9 @@ import {
 } from "@ionic/vue";
 import leftSide from "@/components/leftSide.vue";
 import { ref, onMounted, onBeforeUnmount} from "vue";
+import { useRouter } from "vue-router"
 
+const router = useRouter()
 const isMobile = ref(false);
 
 function checkScreen() {
@@ -42,7 +44,10 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("resize", checkScreen);
 });
-
+function handleVerify(){
+  //this wouldnt noramlly route to role select unless the email is verified
+  router.push("/role-selection")
+}
 </script>
 
 <style scoped>
